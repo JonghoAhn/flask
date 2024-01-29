@@ -1,32 +1,123 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cloudtype - Flask</title>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
-  <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-Low Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            color: #777;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<div class="hero min-h-screen bg-base-200">
-  <div class="hero-content flex-col lg:flex-row-reverse">
-    <img src="{{ url_for('static', filename='img/flask.webp') }}" class="w-36 rounded-lg md:ml-5 lg:ml-5"  alt="flask"/>
-    <div>
-      <h1 class="text-5xl font-bold">Flask</h1>
-      <p class="py-6">클라우드타입에서 배포한 Flask 어플리케이션입니다.</p>
-      <button type="button" onclick="window.open('https://github.com/cloudtype-examples/java-springboot')" class="btn btn-outline rounded">
-        GitHub
-      </button>
-      <button type="button" onclick="window.open('https://docs.cloudtype.io/')" class="btn btn-outline rounded">
-        Docs
-      </button>
-      <button type="button" onclick="window.open('https://discord.gg/U7HX4BA6hu')" class="btn btn-outline rounded">
-        Discord
-      </button>
-    </div>
-  </div>
-</div>
+    <h1>Welcome to High-Low Game!</h1>
+    <form action="{{ url_for('play') }}" method="POST">
+        <input type="hidden" name="wallet" value="{{ wallet }}">
+        <p>현재 자산: <strong>{{ wallet }}원</strong></p>
+
+        <label for="bet">선택해주세요. (L, H, S): </label>
+        <select name="bet" required>
+            <option value="L">Low</option>
+            <option value="H">High</option>
+            <option value="S">Seven</option>
+        </select>
+        <br>
+
+        <label for="amount">얼마를 배팅하시겠습니까?: </label>
+        <input type="number" name="amount" required>
+        <br>
+
+        <button type="submit">Play</button>
+        <br>
+        <br>
+        <br>
+        <h2>게임최고기록</h2>
+        <p>{{ high_score }}</p>
+    </form>
+ <!-- Add the audio element for background music -->
+    <br><br><br>
+<audio id="backgroundMusic" autoplay loop>
+    <source src="{{ url_for('static', filename='background_music.mp3') }}" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+<p>
+<a href="{{ url_for('dice_game') }}">Mini Game : Play Dice Game</a></p>
+
+<!-- Add a button to toggle music on/off -->
+<button id="toggleMusic" onclick="toggleBackgroundMusic()">Pause Music</button>
+
+<script>
+    // JavaScript function to toggle background music
+    function toggleBackgroundMusic() {
+        var music = document.getElementById("backgroundMusic");
+        var button = document.getElementById("toggleMusic");
+
+        if (music.paused) {
+            music.play();
+            button.innerText = "Pause Music";
+        } else {
+            music.pause();
+            button.innerText = "Play Music";
+        }
+    }
+</script>
+
+
 </body>
 </html>

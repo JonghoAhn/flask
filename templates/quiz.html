@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gugu Quiz</title>
+</head>
+<body>
+    <h1>구구단 퀴즈</h1>
+    <form action="/" method="post">
+        <p>{{ question }}</p>
+        <input type="number" name="user_answer" required>
+        <input type="hidden" name="correct_answer" value="{{ (question.split(' ')[0] | int) * (question.split(' ')[-1] | int) }}">
+        <button type="submit">제출</button>
+    </form>
+</body>
+</html>

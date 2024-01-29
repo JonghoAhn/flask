@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Game Result</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #777;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .dice-result {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1e88e5;
+        }
+    </style>
+</head>
+<body>
+    <h2>Dice Game Result</h2>
+    <p class="dice-result">주사위 값: {{ dice_result }}</p>
+    <p class="game-result">{{ result_dice_game }}</p>
+    <form action="{{ url_for('dice_game') }}" method="post">
+        <button type="submit">Continue Playing</button>
+    </form>
+</body>
+</html>

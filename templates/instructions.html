@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Instructions</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            color: #3498db;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the High Low Game!</h1>
+    <p><h3>게임 설명</h3></p>
+    <p>1. 하이로우 게임의 목적은 딜러(컴퓨터)가 선택한 숫자를 맞추는 것입니다. </p>
+    <p>2. 컴퓨터는 1부터 14 사이의 숫자를 선택합니다. </p>
+    <p>7보다 크다고 생각하면 H(high)에 작다고 생각하면 L(low)에</p>
+    <p>7이라고 생각하면 S(seven)에 배팅하시면 됩니다.</p>
+    <h4>3. H 또는 L에 배팅 성공시 배팅금액의 2배를 드립니다.</h4>
+    <h3>4. S에 배팅 성공시 배팅금액의 13배를 드립니다.</h3>
+    <p>Good Luck!</p>
+    <form action="{{ url_for('start_game') }}" method="post">
+        <button type="submit">Start Game</button>
+    </form>
+</body>
+</html>
